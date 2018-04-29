@@ -7762,8 +7762,19 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
         _this.state = {
-            data: [] // App Initial State
+            data: [{
+                id: 1,
+                text: 'clean room'
+            }, {
+                id: 2,
+                text: 'wash the dishes'
+            }, {
+                id: 3,
+                text: 'feed my cat'
+            }]
+            // App Initial State
         };
+        _this.removeTodo = _this.removeTodo.bind(_this);
         return _this;
     }
 
@@ -7796,7 +7807,8 @@ var App = function (_React$Component) {
                 'div',
                 { className: _App2.default.TodoApp },
                 '  // Loader CSS style.TodoApp',
-                _react2.default.createElement(_Title2.default, { title: 'witaj w mojej aplikacji', opis: 'tutaj b\u0119dzie aplikacja' })
+                _react2.default.createElement(_Title2.default, { title: 'witaj w mojej aplikacji', opis: 'tutaj b\u0119dzie aplikacja' }),
+                _react2.default.createElement(_TodoList2.default, { elements: this.state.data, remove: this.removeTodo.bind(this) })
             );
         }
     }]);
@@ -7859,42 +7871,27 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TodoList = function (_React$Component) {
-	_inherits(TodoList, _React$Component);
-
-	function TodoList() {
-		_classCallCheck(this, TodoList);
-
-		return _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).apply(this, arguments));
-	}
-
-	return TodoList;
-}(_react2.default.Component);
-/*
-	this.state.data = {
-	[{
-	id: 1,
-    text: 'clean room'
-}, {
-	id: 2,
-    text: 'wash the dishes'
-}, {
-	id: 3,
-    text: 'feed my cat'
-}]
-}
-
-	removeTodo() {
-
-	}
-}
-*/
+var TodoList = function TodoList(props) {
+	var todos = props.elements.map(function (x) {
+		return _react2.default.createElement(
+			'li',
+			{ key: x.id, onClick: function onClick() {
+					return props.remove(x.id);
+				} },
+			' ',
+			x.text,
+			' '
+		);
+	});
+	console.log(props);
+	return _react2.default.createElement(
+		'ul',
+		null,
+		' ',
+		todos,
+		' '
+	);
+};
 
 exports.default = TodoList;
 

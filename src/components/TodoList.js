@@ -1,27 +1,14 @@
 import React from 'react';
 
-class TodoList extends React.Component {
+const TodoList = (props) => {
+	var todos = props.elements.map(function (item){
+		return <li key={item.id} onClick={()=> props.remove(item.id)} > {item.text} </li>;
 
-}
-/*
-	this.state.data = {
-	[{
-	id: 1,
-    text: 'clean room'
-}, {
-	id: 2,
-    text: 'wash the dishes'
-}, {
-	id: 3,
-    text: 'feed my cat'
-}]
-}
+	})
+  return <ul> {todos} </ul>;
+};
 
-	removeTodo() {
 
-	}
-}
-*/
 
 
 

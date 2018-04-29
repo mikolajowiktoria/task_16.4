@@ -9,8 +9,19 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            data: []		// App Initial State
-        };
+            data: [{
+                    id: 1,
+                      text: 'clean room'
+                    }, {
+                    id: 2,
+                        text: 'wash the dishes'
+                    }, {
+                    id: 3,
+                        text: 'feed my cat'
+                    }]	
+                    	// App Initial State
+         };
+         this.removeTodo = this.removeTodo.bind(this);
     }
 
     addTodo(val){			// dodawanie elementow do kolekcji
@@ -32,6 +43,7 @@ class App extends React.Component {
     	return (
     		<div className={style.TodoApp}>		// Loader CSS style.TodoApp
     			<Title title='witaj w mojej aplikacji' opis='tutaj będzie aplikacja' />
+                <TodoList elements={this.state.data} remove={this.removeTodo.bind(this)} /> 
     		</div>
     		);
     }
